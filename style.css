@@ -1,0 +1,1161 @@
+/* ================================================================
+   STYLE.CSS — Site d'Amélie K. / Travorium
+   Version améliorée — expérience utilisateur professionnelle
+================================================================ */
+
+
+/* ----------------------------------------------------------------
+   VARIABLES GLOBALES
+---------------------------------------------------------------- */
+:root {
+  /* Couleurs de fond */
+  --couleur-fond-principal:  #1a1917;
+  --couleur-fond-carte:      #242220;
+  --couleur-fond-survol:     #2e2b28;
+
+  /* Couleurs de texte */
+  --couleur-texte-principal: #e8e6e1;
+  --couleur-texte-discret:   #9b9790;
+
+  /* Accent orange chaud (voyage, soleil) */
+  --couleur-accent:          #c97d3a;
+  --couleur-accent-clair:    #e8a055;
+  --couleur-accent-transparent: rgba(201, 125, 58, 0.15);
+
+  /* Couleurs de statut */
+  --couleur-succes:          #2d7a4f;
+  --couleur-erreur:          #c0392b;
+
+  /* Bordures */
+  --couleur-bordure:         rgba(255, 255, 255, 0.09);
+  --couleur-bordure-forte:   rgba(255, 255, 255, 0.18);
+
+  /* Formes */
+  --arrondi:                 12px;
+  --arrondi-grand:           20px;
+
+  /* Polices */
+  --police-titres: 'DM Serif Display', Georgia, serif;
+  --police-texte:  'DM Sans', system-ui, sans-serif;
+
+  /* Ombres */
+  --ombre-carte: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --ombre-survol: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* Transitions */
+  --transition-rapide: 0.2s ease;
+  --transition-normale: 0.35s ease;
+}
+
+
+/* ----------------------------------------------------------------
+   RÉINITIALISATION
+---------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px; /* compense la hauteur de la nav fixe */
+}
+
+body {
+  background-color: var(--couleur-fond-principal);
+  color: var(--couleur-texte-principal);
+  font-family: var(--police-texte);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden; /* pas de défilement horizontal */
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--couleur-accent-clair);
+  text-decoration: none;
+  transition: color var(--transition-rapide);
+}
+
+a:hover { color: var(--couleur-texte-principal); }
+
+ul { list-style: none; }
+
+
+/* ----------------------------------------------------------------
+   CONTENEUR CENTRÉ
+---------------------------------------------------------------- */
+.conteneur {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+
+/* ----------------------------------------------------------------
+   PETITE ÉTIQUETTE (eyebrow)
+---------------------------------------------------------------- */
+.petite-etiquette {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--couleur-accent);
+  margin-bottom: 12px;
+}
+
+
+/* ----------------------------------------------------------------
+   ANIMATIONS AU SCROLL
+   Les éléments avec .animer-apparition commencent invisibles
+   et glissent vers le haut quand ils entrent dans l'écran.
+   Le JavaScript les active en ajoutant la classe .visible
+---------------------------------------------------------------- */
+.animer-apparition {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animer-apparition.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Délai en cascade pour les éléments groupés */
+.animer-apparition:nth-child(2) { transition-delay: 0.1s; }
+.animer-apparition:nth-child(3) { transition-delay: 0.2s; }
+.animer-apparition:nth-child(4) { transition-delay: 0.3s; }
+
+
+/* ================================================================
+   BARRE DE NAVIGATION
+================================================================ */
+.barre-navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 24px;
+  height: 64px;
+
+  /* Transparente par défaut, devient opaque au scroll via JS */
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background var(--transition-normale),
+              border-color var(--transition-normale),
+              backdrop-filter var(--transition-normale);
+}
+
+/* Classe ajoutée par JS quand on scrolle vers le bas */
+.barre-navigation.scrollee {
+  background: rgba(26, 25, 23, 0.92);
+  border-bottom-color: var(--couleur-bordure);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.navigation-interieur {
+  max-width: 900px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.navigation-logo {
+  font-family: var(--police-titres);
+  font-size: 1.2rem;
+  color: #fff;
+  font-style: italic;
+}
+
+.navigation-liens {
+  display: flex;
+  gap: 28px;
+}
+
+.selecteur-langue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--couleur-bordure);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.bouton-langue {
+  border: none;
+  background: transparent;
+  color: var(--couleur-texte-discret);
+  font-family: var(--police-texte);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background var(--transition-rapide), color var(--transition-rapide);
+}
+
+.bouton-langue:hover {
+  color: var(--couleur-texte-principal);
+}
+
+.bouton-langue.actif {
+  background: var(--couleur-accent);
+  color: #fff;
+}
+
+.lien-navigation {
+  font-size: 14px;
+  color: var(--couleur-texte-discret);
+  transition: color var(--transition-rapide);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+/* Soulignement animé au survol */
+.lien-navigation::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--couleur-accent);
+  transform: scaleX(0);
+  transition: transform var(--transition-rapide);
+}
+
+.lien-navigation:hover {
+  color: var(--couleur-texte-principal);
+}
+
+.lien-navigation:hover::after {
+  transform: scaleX(1);
+}
+
+/* Bouton CTA dans la navigation */
+.bouton-navigation {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 99px;
+  background: var(--couleur-accent);
+  color: #fff;
+  transition: background var(--transition-rapide), transform var(--transition-rapide);
+  white-space: nowrap;
+}
+
+.bouton-navigation:hover {
+  background: var(--couleur-accent-clair);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+
+/* ================================================================
+   BOUTONS RÉUTILISABLES
+================================================================ */
+.bouton-principal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--couleur-accent);
+  color: #fff;
+  font-family: var(--police-texte);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px 26px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-rapide), transform var(--transition-rapide), box-shadow var(--transition-rapide);
+}
+
+.bouton-principal:hover {
+  background: var(--couleur-accent-clair);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 125, 58, 0.35);
+}
+
+.bouton-secondaire {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 13px 26px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: border-color var(--transition-rapide), color var(--transition-rapide);
+}
+
+.bouton-secondaire:hover {
+  border-color: rgba(255,255,255,0.6);
+  color: #fff;
+}
+
+
+/* ================================================================
+   SECTION 1 : EN-TÊTE
+================================================================ */
+.entete {
+  position: relative;
+  min-height: 100svh; /* plein écran */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.entete-fond {
+  position: absolute;
+  inset: 0;
+}
+
+.entete-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  /* Léger zoom au chargement */
+  animation: zoom-doux 12s ease-out forwards;
+}
+
+@keyframes zoom-doux {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1); }
+}
+
+.entete-assombrissement {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(26,25,23,0.15) 0%,
+    rgba(26,25,23,0.55) 45%,
+    rgba(26,25,23,0.97) 100%
+  );
+}
+
+.entete-texte {
+  position: relative;
+  z-index: 1;
+  padding: 0 40px 80px;
+  max-width: 780px;
+}
+
+.entete-texte h1 {
+  font-family: var(--police-titres);
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  line-height: 1.2;
+  color: #fff;
+  margin: 12px 0 28px;
+}
+
+.entete-boutons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Flèche "scroller vers le bas" */
+.flèche-scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  color: rgba(255,255,255,0.5);
+  animation: rebond 2s ease-in-out infinite;
+  transition: color var(--transition-rapide);
+}
+
+.flèche-scroll:hover { color: #fff; }
+
+@keyframes rebond {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+
+/* ================================================================
+   SECTION 2 : STATS
+================================================================ */
+.stats {
+  padding: 32px 0 0;
+}
+
+.grille-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.carte-stat {
+  background: var(--couleur-fond-carte);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--arrondi-grand);
+  padding: 30px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  box-shadow: var(--ombre-carte);
+}
+
+.valeur-stat {
+  font-family: var(--police-titres);
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  line-height: 1;
+  color: #fff;
+}
+
+.label-stat {
+  color: var(--couleur-texte-discret);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ================================================================
+   SECTION 3 : PRÉSENTATION D'AMÉLIE
+================================================================ */
+.presentation {
+  padding: 88px 0;
+  border-bottom: 1px solid var(--couleur-bordure);
+}
+
+.grille-presentation {
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* Cadre photo avec badge flottant */
+.photo-cadre {
+  position: relative;
+}
+
+.photo-cadre img {
+  border-radius: var(--arrondi-grand);
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid var(--couleur-bordure);
+  transition: transform var(--transition-normale);
+}
+
+.photo-cadre:hover img {
+  transform: scale(1.02);
+}
+
+/* Badge flottant sur la photo */
+.photo-badge {
+  position: absolute;
+  bottom: -16px;
+  right: -16px;
+  background: var(--couleur-accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--ombre-carte);
+  white-space: nowrap;
+}
+
+.colonne-texte h2 {
+  font-family: var(--police-titres);
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.colonne-texte p {
+  color: var(--couleur-texte-discret);
+  margin-bottom: 16px;
+}
+
+/* Liste des points forts avec coches */
+.liste-points-forts {
+  margin: 24px 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.liste-points-forts li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--couleur-texte-discret);
+}
+
+.icone-point {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--couleur-accent-transparent);
+  border: 1px solid var(--couleur-accent);
+  border-radius: 50%;
+  color: var(--couleur-accent);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+
+/* ================================================================
+   SECTION 4 : TEMOIGNAGE VIDEO
+================================================================ */
+.temoignage-video {
+  padding: 88px 0;
+  border-bottom: 1px solid var(--couleur-bordure);
+}
+
+.bloc-temoignage {
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--couleur-fond-carte);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--arrondi-grand);
+  overflow: hidden;
+  box-shadow: var(--ombre-carte);
+}
+
+.cadre-video-local {
+  background: #000;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cadre-video-local video {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+  object-position: center 42%;
+}
+
+.temoignage-merci {
+  padding: 16px 20px 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--couleur-texte-discret);
+  text-align: center;
+}
+
+
+/* ================================================================
+   SECTION 4 : VIDÉOS
+================================================================ */
+.videos {
+  padding: 88px 0;
+  border-bottom: 1px solid var(--couleur-bordure);
+}
+
+.titre-section {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.titre-section h2 {
+  font-family: var(--police-titres);
+  font-size: 2rem;
+  color: #fff;
+}
+
+/* 2 vidéos côte à côte */
+.grille-videos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.bloc-video {
+  background: var(--couleur-fond-carte);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--arrondi-grand);
+  overflow: hidden;
+  transition: transform var(--transition-normale), box-shadow var(--transition-normale);
+}
+
+.bloc-video:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ombre-survol);
+}
+
+/* Étiquette au-dessus de la vidéo */
+.video-etiquette {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px 12px;
+  font-size: 13px;
+  color: var(--couleur-texte-discret);
+  font-weight: 500;
+}
+
+.badge-duree {
+  background: var(--couleur-accent-transparent);
+  border: 1px solid var(--couleur-accent);
+  color: var(--couleur-accent);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+
+/* Ratio 16:9 pour la vidéo responsive */
+.cadre-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.cadre-video iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+.video-description {
+  padding: 12px 20px 20px;
+  font-size: 13px;
+  color: var(--couleur-texte-discret);
+  line-height: 1.5;
+}
+
+
+/* ================================================================
+   SECTION 5 : FORMULAIRE
+================================================================ */
+.section-formulaire {
+  padding: 88px 0;
+  border-bottom: 1px solid var(--couleur-bordure);
+}
+
+.formulaire-entete {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.formulaire-entete h2 {
+  font-family: var(--police-titres);
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.formulaire-sous-titre {
+  color: var(--couleur-texte-discret);
+  font-size: 15px;
+}
+
+/* Message de succès (caché par défaut) */
+.message-succes {
+  display: none; /* le JS le rend visible */
+  align-items: center;
+  gap: 16px;
+  background: rgba(45, 122, 79, 0.15);
+  border: 1px solid var(--couleur-succes);
+  border-radius: var(--arrondi);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  animation: glisser-bas 0.4s ease;
+}
+
+.message-succes.visible {
+  display: flex;
+}
+
+@keyframes glisser-bas {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.succes-icone {
+  width: 36px;
+  height: 36px;
+  background: var(--couleur-succes);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.message-succes strong { color: #fff; display: block; }
+.message-succes p { font-size: 14px; color: var(--couleur-texte-discret); margin: 0; }
+
+/* Groupes de champs */
+.groupe-champ {
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--arrondi);
+  padding: 24px;
+  margin-bottom: 20px;
+  background: var(--couleur-fond-carte);
+}
+
+.groupe-champ legend {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--couleur-texte-principal);
+  padding: 0 8px;
+}
+
+.texte-optionnel { color: var(--couleur-texte-discret); font-weight: 400; }
+.texte-obligatoire { color: var(--couleur-accent); }
+
+/* Cases à cocher personnalisées */
+.ligne-case-cocher {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 4px;
+  cursor: pointer;
+  color: var(--couleur-texte-discret);
+  font-size: 15px;
+  transition: color var(--transition-rapide);
+  border-radius: 6px;
+}
+
+.ligne-case-cocher:hover { color: var(--couleur-texte-principal); }
+
+/* On cache l'input natif */
+.ligne-case-cocher input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Case visuelle personnalisée */
+.case-visuelle {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--couleur-bordure-forte);
+  border-radius: 4px;
+  margin-top: 3px;
+  background: transparent;
+  transition: background var(--transition-rapide), border-color var(--transition-rapide);
+  position: relative;
+}
+
+/* Coche quand cochée */
+.ligne-case-cocher input:checked + .case-visuelle {
+  background: var(--couleur-accent);
+  border-color: var(--couleur-accent);
+}
+
+.ligne-case-cocher input:checked + .case-visuelle::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+/* Cartes radio (boutons radio style carte) */
+.grille-radio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.carte-radio {
+  cursor: pointer;
+  position: relative;
+}
+
+.carte-radio input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-contenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 12px;
+  border: 1.5px solid var(--couleur-bordure);
+  border-radius: var(--arrondi);
+  background: var(--couleur-fond-survol);
+  transition: border-color var(--transition-rapide), background var(--transition-rapide);
+  text-align: center;
+}
+
+.carte-radio:hover .radio-contenu {
+  border-color: var(--couleur-accent);
+}
+
+/* Sélectionné */
+.carte-radio input:checked + .radio-contenu {
+  border-color: var(--couleur-accent);
+  background: var(--couleur-accent-transparent);
+}
+
+.radio-icone { font-size: 22px; }
+
+.radio-texte {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--couleur-texte-discret);
+}
+
+.carte-radio input:checked + .radio-contenu .radio-texte {
+  color: var(--couleur-accent-clair);
+}
+
+/* Messages d'erreur (cachés par défaut) */
+.message-erreur {
+  display: none;
+  color: var(--couleur-erreur);
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.message-erreur.visible { display: block; }
+
+/* Champs texte */
+.rangee-champs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.champ label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--couleur-texte-discret);
+}
+
+.champ input {
+  background: var(--couleur-fond-carte);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 15px;
+  color: var(--couleur-texte-principal);
+  font-family: var(--police-texte);
+  outline: none;
+  transition: border-color var(--transition-rapide), box-shadow var(--transition-rapide);
+}
+
+.champ input::placeholder {
+  color: var(--couleur-texte-discret);
+  opacity: 0.5;
+}
+
+.champ input:focus {
+  border-color: var(--couleur-accent);
+  box-shadow: 0 0 0 3px rgba(201, 125, 58, 0.18);
+}
+
+/* État invalide (ajouté par JS) */
+.champ input.invalide {
+  border-color: var(--couleur-erreur);
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15);
+}
+
+/* Bouton Envoyer */
+.bouton-envoyer {
+  position: relative;
+  background: var(--couleur-accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 30px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--police-texte);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: background var(--transition-rapide), transform var(--transition-rapide), box-shadow var(--transition-rapide);
+  overflow: hidden;
+}
+
+.bouton-envoyer:hover:not(:disabled) {
+  background: var(--couleur-accent-clair);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 125, 58, 0.35);
+}
+
+.bouton-envoyer:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Spinner de chargement (caché par défaut) */
+.spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: tourner 0.7s linear infinite;
+}
+
+.bouton-envoyer.chargement .spinner { display: block; }
+.bouton-envoyer.chargement .fleche  { display: none; }
+.bouton-envoyer.chargement .texte-bouton { opacity: 0.7; }
+
+.fleche { font-size: 18px; transition: transform var(--transition-rapide); }
+.bouton-envoyer:hover .fleche { transform: translateX(4px); }
+
+@keyframes tourner {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ================================================================
+   SECTION 6 : PIED DE PAGE
+================================================================ */
+.pied-de-page {
+  padding: 72px 0 40px;
+  text-align: center;
+}
+
+.signature-salutation {
+  color: var(--couleur-texte-discret);
+  font-size: 15px;
+}
+
+.signature-nom {
+  font-family: var(--police-titres);
+  font-size: 1.8rem;
+  font-style: italic;
+  color: #fff;
+  margin: 4px 0 44px;
+}
+
+.grille-contact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  max-width: 580px;
+  margin: 0 auto 32px;
+}
+
+.carte-contact {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--couleur-fond-carte);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--arrondi);
+  padding: 16px 20px;
+  color: var(--couleur-texte-discret);
+  text-align: left;
+  transition: border-color var(--transition-rapide),
+              background var(--transition-rapide),
+              transform var(--transition-rapide);
+}
+
+.carte-contact:hover {
+  border-color: var(--couleur-accent);
+  background: var(--couleur-fond-survol);
+  color: var(--couleur-texte-principal);
+  transform: translateY(-2px);
+}
+
+.icone-contact { font-size: 22px; flex-shrink: 0; }
+
+.contact-titre {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--couleur-texte-principal);
+}
+
+.contact-sous-titre {
+  display: block;
+  font-size: 12px;
+  color: var(--couleur-texte-discret);
+  word-break: break-all;
+  margin-top: 2px;
+}
+
+
+
+.note-pied-de-page {
+  margin: 20px auto 12px;
+  max-width: 720px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--couleur-texte-discret);
+}
+
+.copyright {
+  font-size: 12px;
+  color: var(--couleur-texte-discret);
+  opacity: 0.4;
+}
+
+
+/* ================================================================
+   BOUTON RETOUR EN HAUT
+================================================================ */
+.bouton-retour-haut {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 50;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--couleur-accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--ombre-carte);
+
+  /* Caché par défaut */
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity var(--transition-rapide),
+              transform var(--transition-rapide),
+              background var(--transition-rapide);
+}
+
+/* Visible (classe ajoutée par JS) */
+.bouton-retour-haut.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.bouton-retour-haut:hover {
+  background: var(--couleur-accent-clair);
+}
+
+
+/* ================================================================
+   RESPONSIVE — MOBILE
+================================================================ */
+@media (max-width: 720px) {
+
+  /* Navigation : cache les liens, garde le logo et le CTA */
+  .navigation-liens { display: none; }
+  .selecteur-langue { margin-left: auto; }
+
+  /* Hero texte */
+  .entete-texte { padding: 0 20px 72px; }
+
+  /* Stats : 1 colonne */
+  .grille-stats { grid-template-columns: 1fr; gap: 1px; }
+  .carte-stat:first-child { border-radius: var(--arrondi) var(--arrondi) 0 0; }
+  .carte-stat:last-child  { border-radius: 0 0 var(--arrondi) var(--arrondi); }
+
+  /* Présentation : 1 colonne */
+  .grille-presentation { grid-template-columns: 1fr; gap: 32px; }
+  .colonne-photo { max-width: 280px; }
+  .photo-badge   { right: 0; }
+
+  /* Vidéos : 1 colonne */
+  .grille-videos { grid-template-columns: 1fr; }
+
+  /* Radio : 1 colonne */
+  .grille-radio { grid-template-columns: 1fr; }
+
+  /* Champs : 1 colonne */
+  .rangee-champs { grid-template-columns: 1fr; }
+
+  /* Contact : 1 colonne */
+  .grille-contact { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .presentation, .videos, .section-formulaire, .pied-de-page { padding: 56px 0; }
+  .entete-boutons { flex-direction: column; align-items: flex-start; }
+  .bouton-navigation { display: none; }
+}
+
+
+/* ================================================================
+   ACCESSIBILITÉ
+================================================================ */
+:focus-visible {
+  outline: 2px solid var(--couleur-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animer-apparition {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+
+.footer-bottom{
+    text-align:center;
+    padding:20px;
+    border-top:1px solid rgba(255,255,255,.15);
+    margin-top:40px;
+    font-size:14px;
+    color:#bdbdbd;
+}

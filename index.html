@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amélie K. — Travorium</title>
+
+  <!-- Fichier de styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Polices Google : serif pour titres, sans-serif pour texte -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+  <!-- ============================================================
+       BARRE DE NAVIGATION (fixe en haut au scroll)
+       Liens vers chaque section de la page
+  ============================================================ -->
+  <nav class="barre-navigation" id="barre-navigation">
+    <div class="navigation-interieur">
+
+      <!-- Logo / nom à gauche -->
+      <a href="#entete" class="navigation-logo">Amélie K.</a>
+
+      <!-- Liens de navigation -->
+      <ul class="navigation-liens">
+        <li><a href="#a-propos" class="lien-navigation" data-i18n="nav.about">À propos</a></li>
+        <li><a href="#videos" class="lien-navigation" data-i18n="nav.videos">Vidéos</a></li>
+        <li><a href="#contact" class="lien-navigation" data-i18n="nav.contact">Me contacter</a></li>
+      </ul>
+
+      <div class="selecteur-langue" aria-label="Sélecteur de langue / Language selector">
+        <button type="button" class="bouton-langue actif" data-lang="fr">FR</button>
+        <button type="button" class="bouton-langue" data-lang="en">EN</button>
+      </div>
+
+      <!-- Bouton CTA (call to action) dans la nav -->
+      <a href="#contact" class="bouton-navigation" data-i18n="nav.cta">Je suis intéressé·e</a>
+
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       SECTION 1 : EN-TÊTE (hero)
+       Grande photo de fond + titre principal
+  ============================================================ -->
+  <header class="entete" id="entete">
+
+    <!-- Photo de fond plein écran -->
+    <div class="entete-fond">
+      <img
+        src="https://storage.tally.so/788984d8-a6ba-4f36-b255-26d6312f606d/1000011874.jpg"
+        alt="Paysage de voyage"
+        class="entete-photo"
+      >
+      <!-- Couche sombre pour rendre le texte lisible -->
+      <div class="entete-assombrissement"></div>
+    </div>
+
+    <!-- Texte par-dessus la photo -->
+    <div class="entete-texte animer-apparition">
+      <span class="petite-etiquette" data-i18n="hero.eyebrow">✈️ Découvre une nouvelle façon de voyager</span>
+      <h1 data-i18n="hero.title">Accède aux tarifs réservés à l'industrie du voyage — et crée un revenu en partageant cette découverte.</h1>
+      <div class="entete-boutons">
+        <a href="#videos" class="bouton-principal" data-i18n="hero.btnVideos">Voir les vidéos</a>
+        <a href="#contact" class="bouton-secondaire" data-i18n="hero.btnContact">Me contacter</a>
+      </div>
+    </div>
+
+    <!-- Flèche vers le bas pour inviter à scroller -->
+    <a href="#stats" class="flèche-scroll" aria-label="Défiler vers le bas">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
+
+  </header>
+
+
+  <!-- ============================================================
+       SECTION 2 : CHIFFRES CLÉS (stats)
+       3 chiffres percutants pour convaincre rapidement
+  ============================================================ -->
+  <section class="stats" id="stats">
+    <div class="conteneur">
+      <div class="grille-stats">
+
+        <div class="carte-stat animer-apparition">
+          <span class="valeur-stat">80%</span>
+          <span class="label-stat">d'économies possibles sur certains voyages</span>
+        </div>
+
+        <div class="carte-stat animer-apparition">
+          <span class="valeur-stat">Accès</span>
+          <span class="label-stat">aux tarifs réservés à l'industrie du voyage</span>
+        </div>
+
+        <div class="carte-stat animer-apparition">
+          <span class="valeur-stat">+ liberté</span>
+          <span class="label-stat">pour voyager, créer un revenu et vivre autrement</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3 : PRÉSENTATION D'AMÉLIE
+       Photo + texte biographique côte à côte
+  ============================================================ -->
+  <section class="presentation" id="a-propos">
+    <div class="conteneur">
+      <div class="grille-presentation">
+
+        <!-- Colonne gauche : photo -->
+        <div class="colonne-photo animer-apparition">
+          <div class="photo-cadre">
+            <img
+              src="https://storage.tally.so/e47cff2d-0650-4b6d-aafe-2daa46853e9f/1000010610.jpg"
+              alt="Photo d'Amélie K."
+            >
+            <!-- Badge flottant sur la photo -->
+            <div class="photo-badge">
+              <span>✈️</span>
+              <span>Partenaire indépendante</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colonne droite : texte -->
+        <div class="colonne-texte animer-apparition">
+          
+          <h2 data-i18n="about.title">Je suis Amélie.</h2>
+
+          <p data-i18n="about.p1">
+            J'ai 41 ans. Je vis à Montréal, au Canada, et j'ai grandi à Québec
+          </p>
+
+          <p data-i18n="about.p2">
+            Pendant longtemps, j'ai construit ma vie autour de ce qu'on nous apprend souvent : faire des études, bâtir une carrière, acheter une maison, fonder une famille et entretenir une relation de couple solide. Aujourd'hui, cela fait plus de 20 ans que je partage ma vie avec mon conjoint. Nous avons deux enfants : une fille de 6 ans et un garçon de 3 ans.
+          </p>
+        <p data-i18n="about.p3">
+J'ai complété deux baccalauréats et une maîtrise, ce qui me permet d'exercer depuis plus de 15 ans dans le domaine de la relation d'aide. C'est une profession que j'aime profondément et que je considère comme une véritable vocation.
+          </p>
+
+
+          <p data-i18n="about.p4">Avec les années, j'ai toutefois pris conscience d'une réalité que vivent de nombreux professionnels : même lorsqu'on aime son travail, qu'on s'investit pleinement et qu'on consacre des années à se former, il peut exister un écart entre tout ce que l'on donne et la qualité de vie à laquelle on aspire. Cette réflexion devient encore plus présente lorsqu'on pense à l'avenir, à la retraite et au temps que l'on souhaite consacrer à ceux qu'on aime.
+</p>
+
+<p data-i18n="about.p5">En 2024, j'ai réalisé qu'une partie de moi s'était doucement effacée derrière les responsabilités du quotidien. Pendant près de dix ans, j'avais mis de côté une passion qui m'a toujours habitée : explorer le monde et découvrir d'autres cultures.
+</p>
+
+<p data-i18n="about.p6">En janvier 2025, j'ai donc décidé d'entreprendre un projet en parallèle de ma carrière.
+</p>
+
+<p data-i18n="about.p7">Au départ, mon objectif était simple : remettre le voyage au centre de ma vie.
+</p>
+
+<p data-i18n="about.p8">En recommençant à voyager, j'ai reconnecté avec une partie de moi qui se ressource, s'émerveille devant la beauté et la diversité des paysages, convaincue que chaque voyage nous transforme un peu plus.
+</p>
+
+<p data-i18n="about.p9">Aujourd'hui, ce qui me motive le plus, c'est de faire découvrir ce projet et d'inspirer d'autres personnes à se créer une qualité de vie davantage centrée sur ce qui compte réellement à leurs yeux.
+</p>
+<p data-i18n="about.p10">Intégrer un club de voyage privé et choisir de devenir partenaire indépendante représente bien plus qu'une façon de voyager davantage.
+</p>
+
+<p data-i18n-html="about.p11">C'est une façon de créer plus de liberté.<br>
+Plus de temps de qualité avec ses proches.<br>
+Plus de possibilités pour son avenir</p>
+
+<p data-i18n-html="about.p12">Si mon parcours t'interpelle, ce sera un plaisir de faire ta connaissance. <br>
+
+Amélie K.</p>
+
+
+
+          <!-- Points forts en liste visuelle -->
+          <ul class="liste-points-forts">
+            <li>
+              <span class="icone-point">✓</span>
+              <span data-i18n="about.point1">Accès aux tarifs réservés à l'industrie du voyage</span>
+            </li>
+            <li>
+              <span class="icone-point">✓</span>
+              <span data-i18n="about.point2">Économies jusqu'à 80% sur hôtels, vols et croisières</span>
+            </li>
+            <li>
+              <span class="icone-point">✓</span>
+              <span data-i18n="about.point3">Possibilité de créer un revenu en partageant l'accès</span>
+            </li>
+          </ul>
+
+          <a href="#contact" class="bouton-principal" data-i18n="about.cta">En savoir plus →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 4 : TÉMOIGNAGE VIDÉO
+       Vidéo locale + texte de remerciement
+  ============================================================ -->
+  <section class="temoignage-video" id="temoignage-video">
+    <div class="conteneur">
+
+      <div class="titre-section animer-apparition">
+        <span class="petite-etiquette" data-i18n="testimony.eyebrow">Témoignage</span>
+        <h2 data-i18n="testimony.title">Un aperçu en vidéo</h2>
+      </div>
+
+      <div class="bloc-temoignage animer-apparition">
+        <div class="cadre-video cadre-video-local">
+          <video controls preload="metadata" playsinline>
+            <source src="AQMDU9P2H5ELb5LqZEO04_dq6yiPQEyAuhaG_lbHvfoP1VdbLw9tMD8obDISsdGqM5MWZlkcwfBc8NqjmZsFjp2qmDJJmwaT5ezYo4vL-w.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+        <p class="temoignage-merci" data-i18n="testimony.thanks">
+          Merci à Marilou, Guitry, Séverine, Danny, Annie, Romuald et Catherine pour leurs témoignages.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5 : VIDÉOS
+       2 vidéos intégrées l'une après l'autre
+  ============================================================ -->
+  <section class="videos" id="videos">
+    <div class="conteneur">
+
+      <div class="titre-section animer-apparition">
+        <span class="petite-etiquette" data-i18n="videos.eyebrow">Regarde avant de décider</span>
+        <h2 data-i18n="videos.title">Tout comprendre en moins de 15 minutes</h2>
+      </div>
+
+      <!-- Grille 2 vidéos côte à côte sur grand écran -->
+      <div class="grille-videos">
+
+        <!-- Vidéo 1 : Vimeo -->
+        <div class="bloc-video animer-apparition">
+          <div class="video-etiquette">
+            <span class="badge-duree">10 min</span>
+            <span data-i18n="videos.v1.label">Présentation de l'entreprise</span>
+          </div>
+          <div class="cadre-video">
+            <iframe
+              src="https://player.vimeo.com/video/1153968332?app_id=122963"
+              title="L'Opportunité Travorium"
+              frameborder="0"
+              allow="fullscreen"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <p class="video-description" data-i18n="videos.v1.desc">Vue d'ensemble complète de la plateforme Travorium et de ce qu'elle offre.</p>
+        </div>
+
+        <!-- Vidéo 2 : YouTube -->
+        <div class="bloc-video animer-apparition">
+          <div class="video-etiquette">
+            <span class="badge-duree">3 min</span>
+            <span data-i18n="videos.v2.label">5 questions fréquentes</span>
+          </div>
+          <div class="cadre-video">
+            <iframe
+              src="https://www.youtube.com/embed/QWmzcLT2wbM?feature=oembed"
+              title="5 questions avec l'équipe"
+              frameborder="0"
+              allow="fullscreen"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <p class="video-description" data-i18n="videos.v2.desc">Les réponses aux questions qui reviennent le plus souvent sur le partenariat.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5 : FORMULAIRE DE CONTACT
+       Cases à cocher + boutons radio + champs texte
+  ============================================================ -->
+  <section class="section-formulaire" id="contact">
+    <div class="conteneur">
+
+      <div class="formulaire-entete animer-apparition">
+        <span class="petite-etiquette" data-i18n="form.eyebrow">Prêt·e à passer à l'action ?</span>
+        <h2 data-i18n="form.title">Dis-moi ce que tu aimerais faire</h2>
+        <p class="formulaire-sous-titre" data-i18n="form.subtitle">Je te réponds personnellement dans les 24 heures.</p>
+      </div>
+
+      <!-- Message de succès (caché par défaut, visible après envoi) -->
+      <div class="message-succes" id="message-succes" role="alert" aria-live="polite">
+        <span class="succes-icone">✓</span>
+        <div>
+          <strong data-i18n="success.title">Message envoyé !</strong>
+          <p data-i18n="success.text">Merci ! Je te reviens très bientôt.</p>
+        </div>
+      </div>
+
+      <form class="formulaire animer-apparition" id="formulaire-contact" novalidate>
+
+        <!-- Groupe 1 : Cases à cocher -->
+        <fieldset class="groupe-champ">
+          <legend data-i18n-html="form.legend.interests">J'aimerais : <span class="texte-optionnel">(plus d'un choix possible)</span></legend>
+
+          <label class="ligne-case-cocher">
+            <input type="checkbox" name="interet" value="zoom">
+            <span class="case-visuelle"></span>
+            <span data-i18n="form.interest.zoom">Assister à la présentation Zoom — dimanche à 14h00, heure du Québec</span>
+          </label>
+
+          <label class="ligne-case-cocher">
+            <input type="checkbox" name="interet" value="partenaire">
+            <span class="case-visuelle"></span>
+            <span data-i18n="form.interest.partner">Découvrir comment devenir partenaire et créer un revenu supplémentaire</span>
+          </label>
+
+          <label class="ligne-case-cocher">
+            <input type="checkbox" name="interet" value="membre">
+            <span class="case-visuelle"></span>
+            <span data-i18n="form.interest.member">Devenir membre pour accéder aux tarifs préférentiels — jusqu'à 80% d'économies</span>
+          </label>
+        </fieldset>
+
+        <!-- Groupe 2 : Boutons radio (un seul choix) -->
+        <fieldset class="groupe-champ">
+          <legend data-i18n-html="form.legend.contact">Je préfère être contacté·e par : <span class="texte-obligatoire">*</span></legend>
+
+          <div class="grille-radio">
+            <label class="carte-radio">
+              <input type="radio" name="mode-contact" value="courriel" required>
+              <span class="radio-contenu">
+                <span class="radio-icone">✉️</span>
+                <span class="radio-texte" data-i18n="form.pref.email">Courriel</span>
+              </span>
+            </label>
+
+            <label class="carte-radio">
+              <input type="radio" name="mode-contact" value="texte">
+              <span class="radio-contenu">
+                <span class="radio-icone">💬</span>
+                <span class="radio-texte" data-i18n="form.pref.sms">Message texte</span>
+              </span>
+            </label>
+
+            <label class="carte-radio">
+              <input type="radio" name="mode-contact" value="appel">
+              <span class="radio-contenu">
+                <span class="radio-icone">📞</span>
+                <span class="radio-texte" data-i18n="form.pref.call">Appel téléphonique</span>
+              </span>
+            </label>
+          </div>
+
+          <!-- Message d'erreur si rien n'est sélectionné -->
+          <p class="message-erreur" id="erreur-contact" data-i18n="form.error.contact">Veuillez choisir un mode de contact.</p>
+        </fieldset>
+
+        <!-- Groupe 3 : Champs texte -->
+        <div class="rangee-champs">
+
+          <div class="champ">
+            <label for="prenom" data-i18n="form.field.firstName">Prénom</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Ton prénom" data-i18n-placeholder="form.placeholder.firstName" autocomplete="given-name">
+          </div>
+
+          <div class="champ">
+            <label for="courriel" data-i18n="form.field.email">Courriel</label>
+            <input type="email" id="courriel" name="courriel" placeholder="ton@courriel.com" data-i18n-placeholder="form.placeholder.email" autocomplete="email">
+            <p class="message-erreur" id="erreur-courriel" data-i18n="form.error.email">Adresse courriel invalide.</p>
+          </div>
+
+          <div class="champ">
+            <label for="telephone" data-i18n-html="form.field.phone">Téléphone <span class="texte-optionnel">(optionnel)</span></label>
+            <input type="tel" id="telephone" name="telephone" placeholder="(514) 000-0000" data-i18n-placeholder="form.placeholder.phone" autocomplete="tel">
+          </div>
+
+        </div>
+
+        <!-- Bouton d'envoi -->
+        <button type="submit" class="bouton-envoyer" id="bouton-envoyer">
+          <span class="texte-bouton" data-i18n="form.submit">Envoyer mon message</span>
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="fleche">→</span>
+        </button>
+
+      </form>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 6 : PIED DE PAGE
+       Signature + 4 liens de contact + note
+  ============================================================ -->
+  <footer class="pied-de-page">
+    <div class="conteneur">
+
+      <p class="signature-salutation" data-i18n="footer.greeting">Au plaisir de te parler,</p>
+      <p class="signature-nom">Amélie K.</p>
+
+      <!-- ============================================================
+           CARTES DE CONTACT
+           Les visiteurs peuvent contacter Amélie directement
+           sans remplir le formulaire.
+      ============================================================ -->
+      <div class="grille-contact">
+
+        <!-- ======================================================
+             FACEBOOK
+             Ouvre le profil Facebook officiel d'Amélie
+        ======================================================= -->
+        <a href="https://www.facebook.com/sainvilien.AmelieK"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="carte-contact">
+
+          <span class="icone-contact">📘</span>
+
+          <div>
+            <span class="contact-titre">Facebook</span>
+            <span class="contact-sous-titre" data-i18n="footer.facebook.subtitle">
+              Voir mon profil Facebook
+            </span>
+          </div>
+
+        </a>
+
+
+        <!-- ======================================================
+             MESSENGER
+             Lance directement une conversation avec Amélie
+        ======================================================= -->
+        <a href="https://m.me/sainvilien.AmelieK"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="carte-contact">
+
+          <span class="icone-contact">💬</span>
+
+          <div>
+            <span class="contact-titre">Messenger</span>
+            <span class="contact-sous-titre" data-i18n="footer.messenger.subtitle">
+              Écris-moi directement
+            </span>
+          </div>
+
+        </a>
+
+
+        <!-- ======================================================
+             COURRIEL
+             Ouvre le logiciel de courriel du visiteur
+             avec un sujet déjà rempli.
+        ======================================================= -->
+        <a href="mailto:ameliek.travorium@gmail.com?subject=Information%20sur%20Travorium"
+           class="carte-contact">
+
+          <span class="icone-contact">✉️</span>
+
+          <div>
+            <span class="contact-titre">Courriel</span>
+            <span class="contact-sous-titre">
+              ameliek.travorium@gmail.com
+            </span>
+          </div>
+
+        </a>
+
+
+        <!-- ======================================================
+             TRAVORIUM
+             Lien d'inscription officiel d'Amélie
+        ======================================================= -->
+        <a href="https://travorium.com/enroll.php?sponsor=617196"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="carte-contact">
+
+          <span class="icone-contact">🌐</span>
+
+          <div>
+            <span class="contact-titre">S'inscrire</span>
+            <span class="contact-sous-titre" data-i18n="footer.join.subtitle">
+              Rejoindre Travorium
+            </span>
+          </div>
+
+        </a>
+
+      </div>
+
+      <p class="note-pied-de-page" data-i18n="footer.note">
+        Pour afficher le site Travorium en français, clique sur le drapeau 🇫🇷 en haut de la page.
+      </p>
+
+      <p class="copyright">© 2025 Amélie K. — Partenaire indépendante Travorium</p>
+
+    </div>
+  </footer>
+
+
+  <!-- Bouton flottant "retour en haut de page" -->
+  <button class="bouton-retour-haut" id="bouton-retour-haut" aria-label="Retour en haut de page">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+
+  <!-- EmailJS SDK (envoi direct des formulaires par courriel) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Fichier JavaScript pour les interactions -->
+  <script src="script.js"></script>
+
+</body>
+</html>
